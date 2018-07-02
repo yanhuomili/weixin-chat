@@ -13,13 +13,16 @@ const store = new Vuex.Store({
 			age:27
 		},
 		hasTabBar:true,
-		activeTab:'/home'
+		activeTab:'/home',
+		direction:''
 	},
 	mutations:{
 		getUserInfo(state){
-			console.log(state.userInfo.age)
 			return 'huahua';
-		}
+		},
+		UPDATE_DIRECTION(state,obj){
+			state.direction=obj.direction;
+		},
 	},
 	actions:{//异步方法
 		

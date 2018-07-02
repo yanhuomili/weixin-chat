@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="{'app-wrap-active':show==true}">
-  	<transition name="fade">
-  	  <router-view/>
+  	<transition :name="direction">
+  	  	<router-view/>
     </transition>
     <foot-bar v-if="show" ref="footBarRef"></foot-bar>
   </div>
@@ -10,17 +10,22 @@
 <script>
 import footBar from './components/footBar';
 import store from './store'
+import { mapState } from 'vuex'
 export default {
   name: 'App',
   components:{
   	footBar
   },
   mounted(){
+  	console.log(this.direction)
   },
   computed:{
   	show(){
   		return store.state.hasTabBar;
-  	}
+  	},
+  	...mapState({
+    	direction:'direction'
+  	})
   }
 }
 </script>
@@ -33,12 +38,48 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*color: #2c3e50;*/
  
+}
+.router-view{
+	overflow-x:hidden ;
 }
 .app-wrap-active{
 	padding-bottom:50px ;
 }
+
+.vux-pop-out-enter-active,
+  .vux-pop-out-leave-active,
+  .vux-pop-in-enter-active,
+  .vux-pop-in-leave-active {
+    will-change: transform;
+    transition: all 250ms;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+
+  .vux-pop-out-enter {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  .vux-pop-out-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .vux-pop-in-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .vux-pop-in-leave-active {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
 }

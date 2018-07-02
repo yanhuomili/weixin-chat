@@ -8,7 +8,6 @@ const login={
 	},
 	mutations:{
 		getUserInfo(state){
-			console.log(state.loginInfo.age)
 			return 'haohao';
 		}
 	},
