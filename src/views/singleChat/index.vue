@@ -5,14 +5,14 @@
   				<span>6月29号 晚上18:00</span>
   			</div>
   		<div class="chat-list-item" v-for="(item,index) in chatArr">
-  			<div class="my-text row-r text" v-if="index%2==0">
+  			<div class="my-text text" v-if="index%2==0">
+	  			<img class="person-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
 	  			<p>
 	  				<span>{{item}}</span>
 	  				<i></i>
 	  			</p>
-	  			<img class="person-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
 	  		</div>
-	  		<div class="other-text row-l text" v-else>
+	  		<div class="other-text text" v-else>
 	  			<img class="person-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
 	  			<p>
 	  				<span>{{item}}</span>
@@ -25,7 +25,7 @@
   	
   	<div class="input-wrap row-lr">
   		<img src="../../assets/img/find-default.png" alt="" />
-  		<mu-text-field v-model="inputText"></mu-text-field>
+  		<mu-text-field ref="inputRef" v-model="inputText"></mu-text-field>
   		<img src="../../assets/img/find-default.png" alt="" />
 			<p @click="send" v-if="inputText" class="send">发送</p>
 			<img v-else src="../../assets/img/find-default.png" alt="" />
@@ -57,10 +57,13 @@ export default {
   	send(){
   		this.chatArr.push(this.inputText);
   		this.inputText="";
+  		var box=document.getElementsByClassName('chat-list')[0];
+  		var ipt=document.getElementsByTagName('input')[0];
+  		ipt.focus()
   		this.scrollHandle();
   	},
   	scrollHandle(){
-  		let box=document.getElementsByClassName('single-chat')[0];
+  		let box=document.getElementsByClassName('chat-list')[0];
   		let scrollH=box.scrollHeight;//盒子高度
   		let scrollT=box.scrollTop;//盒子卷起的高度
   		let boxH=box.offsetHeight;//内容总共的高度
@@ -76,9 +79,11 @@ export default {
 <style scoped lang="less">
 .single-chat{
 	width: 100%;
-	height: calc(100vh - 104px);
+	height: 100%;
 	overflow-y: auto;
 	.chat-list{
+		height: calc(100% - 48px);
+		overflow-y: auto;
 		padding: 10px;
 	}
 	.time-tip{
@@ -95,6 +100,7 @@ export default {
 		width: 100%;
 		margin-bottom: 15px;
 		align-items: flex-start;
+		overflow: hidden;
 		p{
 			max-width: 70%;
 			padding: 10px;
@@ -120,6 +126,7 @@ export default {
 	}
 	.my-text{
 		p{
+			float: right;
 			background: #90caf9;
 			i{
 				border-color: #90caf9;
@@ -127,11 +134,13 @@ export default {
 			}
 		}
 		.person-img{
+			float: right;
 			margin-left: 10px;
 		}
 	}
 	.other-text{
 		p{
+			float: left;
 			background: #fff;
 			i{
 				border-color: #fff;
@@ -139,6 +148,7 @@ export default {
 			}
 		}
 		.person-img{
+			float: left;
 			margin-right: 10px;
 		}
 	}

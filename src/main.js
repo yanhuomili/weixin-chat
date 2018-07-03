@@ -24,8 +24,10 @@ router.afterEach((to,from)=>{
 	store.state.activeTab=to.path;
 	if(arr.indexOf(to.path)<0){
 		store.state.hasTabBar=false;
+		store.state.footBarHeight=0;
 	}else{
 		store.state.hasTabBar=true;
+		store.state.footBarHeight=51;
 	}
 	
 	//页面切换动态效果设置
