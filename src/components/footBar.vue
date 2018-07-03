@@ -4,7 +4,7 @@
   		<li class="col-c" :class="{'active':activeIndex=='/home'||activeIndex=='/'}" @click="barClick('/home')">
   			<span class="menu-icon">
   				<i>
-	  				<mu-badge content="12" circle color="red400"  class="demo-icon-badge"></mu-badge>
+	  				<mu-badge content="12" circle color="red400" class="news-tip"></mu-badge>
 	  			</i>
 	  				<img v-if="activeIndex=='/home'" src="../assets/img/message-active.png"/>
 	  				<img v-else src="../assets/img/message-default.png"/>
@@ -14,7 +14,7 @@
   		<li class="col-c" :class="{'active':activeIndex=='/mailList'}" @click="barClick('/mailList')">
   			<span class="menu-icon">
   				<i>
-	  				<mu-badge content="12" circle color="red400"  class="demo-icon-badge"></mu-badge>
+	  				<mu-badge circle color="red400"  class="demo-icon-badge"></mu-badge>
 	  			</i>
 	  				<img v-if="activeIndex=='/mailList'" src="../assets/img/users-active.png"/>
 	  				<img v-else src="../assets/img/users-default.png"/>
@@ -24,7 +24,7 @@
   		<li class="col-c" :class="{'active':activeIndex=='/find'}" @click="barClick('/find')">
   			<span class="menu-icon">
   				<i>
-	  				<mu-badge content="12" circle color="red400"  class="demo-icon-badge"></mu-badge>
+	  				<mu-badge circle color="red400"  class="demo-icon-badge"></mu-badge>
 	  			</i>
 	  				<img v-if="activeIndex=='/find'" src="../assets/img/find-active.png"/>
 	  				<img v-else src="../assets/img/find-default.png"/>
@@ -34,7 +34,7 @@
   		<li class="col-c" :class="{'active':activeIndex=='/my'}" @click="barClick('/my')">
   			<span class="menu-icon">
   				<i>
-	  				<mu-badge content="12" circle color="red400"  class="demo-icon-badge"></mu-badge>
+	  				<mu-badge circle color="red400"  class="demo-icon-badge"></mu-badge>
 	  			</i>
 	  				<img v-if="activeIndex=='/my'" src="../assets/img/my-active.png"/>
 	  				<img v-else src="../assets/img/my-default.png"/>
@@ -107,10 +107,19 @@ export default {
 
 
 </style>
-<style type="text/css">
-	.mu-badge-circle{
-		width: 16px !important;
-		height: 16px !important;
-		
+<style type="text/css" lang="less">
+.foot-bar{
+	.news-tip{
+		.mu-badge-circle{
+			width: 16px !important;
+			height: 16px !important;
+		}
 	}
+	.demo-icon-badge{
+		.mu-badge-circle{
+			width: 10px !important;
+			height: 10px !important;
+		}
+	}
+}
 </style>

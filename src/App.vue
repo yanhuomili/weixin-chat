@@ -1,5 +1,6 @@
 <template>
   <div id="app" :class="{'app-wrap-active':show==true}">
+  	<nav-bar></nav-bar>
   	<transition :name="direction">
   	  	<router-view/>
     </transition>
@@ -9,12 +10,14 @@
 
 <script>
 import footBar from './components/footBar';
+import navBar from './components/navBar';
 import store from './store'
 import { mapState } from 'vuex'
 export default {
   name: 'App',
   components:{
-  	footBar
+  	footBar,
+  	navBar
   },
   mounted(){
   	console.log(this.direction)
@@ -38,7 +41,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+	padding-top: 56px;
 }
 .router-view{
 	overflow-x:hidden ;
@@ -81,7 +84,7 @@ export default {
   }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .25s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
