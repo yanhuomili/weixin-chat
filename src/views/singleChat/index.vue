@@ -25,7 +25,7 @@
   	
   	<div class="input-wrap row-lr">
   		<img src="../../assets/img/find-default.png" alt="" />
-  		<mu-text-field ref="inputRef" v-model="inputText"></mu-text-field>
+  		<mu-text-field @focus="getFoucs" ref="inputRef" v-model="inputText"></mu-text-field>
   		<img src="../../assets/img/find-default.png" alt="" />
 			<p @click="send" v-if="inputText" class="send">发送</p>
 			<img v-else src="../../assets/img/find-default.png" alt="" />
@@ -70,8 +70,13 @@ export default {
 			this.$nextTick(()=>{
 				box.scrollTop=boxH;
 			})
+  	},
+  	getFoucs(){
+    	setTimeout(()=>{
+    		this.scrollHandle();
+    	},50)
   	}
-	}
+	},
 }
 </script>
 
