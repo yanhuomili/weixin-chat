@@ -2,7 +2,7 @@
   <div class="find">
   		<div class="top">
   			<mu-list>
-			    <mu-list-item avatar button :ripple="true">
+			    <mu-list-item @click="goFriendsCircle" avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
 			          <img class="left-img" src="../../assets/img/friend-circle.png">
@@ -110,6 +110,9 @@ export default {
 		getRanderNum(){
   		return Math.ceil(Math.random()*6); 
   	},
+  	goFriendsCircle(){
+  		this.$router.push({path:'/FriendsCircle'});
+  	}
 	}
 }
 </script>

@@ -11,20 +11,6 @@
   		
   		<div class="top">
   			<mu-list>
-			    <!--<mu-list-item avatar button :ripple="true">
-			      <mu-list-item-action>
-			        <mu-avatar>
-			          <img class="left-img" src="../../assets/img/friend-circle.png">
-			        </mu-avatar>
-			      </mu-list-item-action>
-			      <mu-list-item-title>朋友圈</mu-list-item-title>
-			      <mu-list-item-action>
-			        <mu-avatar>
-			          <img src="../../assets/img/head4.jpg">
-			        </mu-avatar>
-			        <div v-if="unReadNew" class="tip-point"></div>
-			      </mu-list-item-action>
-			    </mu-list-item>-->
 			   	<mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>

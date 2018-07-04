@@ -27,18 +27,36 @@
 	      </mu-list-item-action>
 	    </mu-list-item>
 	  </mu-list>
+	  
+	  
+		<mu-button color="primary" @click="getList">获取列表</mu-button>
+		<mu-list>
+	    <mu-list-item avatar button :ripple="false" v-for="(item,index	) in list" :key="index">
+	      <mu-list-item-action>
+	        <mu-avatar>
+	          <img src="../../assets/img/head2.jpg">
+	        </mu-avatar>
+	      </mu-list-item-action>
+	      <mu-list-item-title>Mike Li</mu-list-item-title>
+	      <mu-list-item-action>
+	        <mu-icon value="chat_bubble"></mu-icon>
+	      </mu-list-item-action>
+	    </mu-list-item>
+		</mu-list>
 		
 		
   </div>
 </template>
 
 <script>
+	import { test } from '@/api'
 export default {
   name: 'home',
   components:{
   },
   data () {
     return {
+    	list:[]
     }
   },
   computed:{
@@ -46,16 +64,25 @@ export default {
   },
   mounted(){
   	console.log(mui)
+  	test().then((res)=>{
+  		console.log(res.data);
+  	}).catch((err)=>{
+  		console.log(err);
+  	})
   },
 	methods: {
 		//获取1-6的随机数
 		getRanderNum(){
-  		return Math.ceil(Math.random()*6); 
-  },
-  //前往聊天叶敏
-  goSingleChat(){
-  	this.$router.push({path:'SingleChat'});
-  }
+	  		return Math.ceil(Math.random()*6); 
+	  },
+	  //前往聊天叶敏
+	  goSingleChat(){
+	  	this.$router.push({path:'SingleChat'});
+	  },
+	  async getList(){
+	  	let data=(await test()).data;
+	  	this.list=data.data;
+	  }
 	}
 }
 </script>

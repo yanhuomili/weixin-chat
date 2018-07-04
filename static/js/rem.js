@@ -1,6 +1,6 @@
 /**
  * YDUI 可伸缩布局方案
- * rem计算方式：设计图尺寸px / 100 = 实际rem  例: 100px = 1rem
+ * rem计算方式：设计图尺寸px / 100 = 实际rem  例: 50px = 1rem
  */
 !function (window) {
 
