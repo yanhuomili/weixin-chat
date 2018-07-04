@@ -29,6 +29,7 @@ router.afterEach((to,from)=>{
 		store.state.hasTabBar=true;
 		store.state.footBarHeight=51;
 	}
+	store.commit('getRouterViewH');//每次切换路由都需要重新计算router-view的高度
 	
 	//页面切换动态效果设置
 	const toIndex = history.getItem(to.path);

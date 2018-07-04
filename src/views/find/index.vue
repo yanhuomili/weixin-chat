@@ -9,9 +9,10 @@
 			        </mu-avatar>
 			      </mu-list-item-action>
 			      <mu-list-item-title>朋友圈</mu-list-item-title>
-			      <mu-list-item-action>
+			      <mu-list-item-action v-if="hasNews">
 			        <mu-avatar>
-			          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+			          <img src="../../assets/img/head5.jpg">
+		          	<span class="point"></span>
 			        </mu-avatar>
 			      </mu-list-item-action>
 			    </mu-list-item>
@@ -101,6 +102,7 @@ export default {
   name: 'find',
   data () {
     return {
+    	hasNews:true
     }
   },
 	methods: {
@@ -125,6 +127,17 @@ export default {
 		background: #fff;
 		.mu-avatar{
 			background-color: transparent;
+			position:relative;
+			.point{
+				display:inline-block;
+				width: 8px;
+				height: 8px;
+				background: red;
+				border-radius: 50%;
+				position: absolute;
+				top: -4px;
+				right: -4px;
+			}
 			.left-img{
 				max-width: 28px;
 				height: auto;

@@ -31,8 +31,9 @@ export default {
   	},
   	//动态设置router-view的高度
   	routerViewH(){
-  		let H=document.documentElement.clientHeight;
-  		return H-store.state.footBarHeight-56;
+//		let H=document.documentElement.clientHeight;
+//		return H-store.state.footBarHeight-56;
+  		return store.state.appH;
   	},
   	...mapState({
     	direction:'direction'

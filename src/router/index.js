@@ -16,37 +16,58 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      meta:{
+      	title:'首页'
+      }
       
     },
     {
       path: '/',
-      redirect:'/home'
+      redirect:'/home',
+      meta:{
+      	title:'首页'
+      }
     },
     {
       path: '/MailList',
       name: 'mailList',
-      component: MailList
+      component: MailList,
+      meta:{
+      	title:'通讯录'
+      }
     },
     {
       path: '/Find',
       name: 'find',
-      component: Find
+      component: Find,
+      meta:{
+      	title:'发现'
+      }
     },
     {
       path: '/My',
       name: 'my',
-      component: My
+      component: My,
+      meta:{
+      	title:'我的'
+      }
     },
     {
       path: '/DetailInformation',
       name: 'detailInformation',
-      component: DetailInformation
+      component: DetailInformation,
+      meta:{
+      	title:'详细资料'
+      }
     },
     {
       path: '/SingleChat',
       name: 'single-chat',
-      component: SingleChat
+      component: SingleChat,
+      meta:{
+      	title:'用户'
+      }
     },
     {
       path: '/Test',

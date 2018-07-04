@@ -5,7 +5,7 @@
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
-			          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+			          <img src="../../assets/img/head1.jpg">
 			        </mu-avatar>
 			      </mu-list-item-action>
 			      <mu-list-item-title>新的朋友</mu-list-item-title>
@@ -13,7 +13,7 @@
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
-			          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+			          <img src="../../assets/img/head2.jpg">
 			        </mu-avatar>
 			      </mu-list-item-action>
 			      <mu-list-item-title>群聊</mu-list-item-title>
@@ -21,7 +21,7 @@
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
-			          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+			          <img src="../../assets/img/head3.jpg">
 			        </mu-avatar>
 			      </mu-list-item-action>
 			      <mu-list-item-title>标签</mu-list-item-title>
@@ -29,7 +29,7 @@
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
-			          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+			          <img src="../../assets/img/head4.jpg">
 			        </mu-avatar>
 			      </mu-list-item-action>
 			      <mu-list-item-title>公众号</mu-list-item-title>
@@ -44,7 +44,7 @@
 				    <mu-list-item @click="goDetailInformation" avatar button :ripple="true" v-for="(item1,index) in 6" :key="index">
 				      <mu-list-item-action>
 				        <mu-avatar>
-				          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+				          <img src="../../assets/img/head5.jpg">
 				        </mu-avatar>
 				      </mu-list-item-action>
 				      <mu-list-item-title>Myron Liu--{{item}}</mu-list-item-title>

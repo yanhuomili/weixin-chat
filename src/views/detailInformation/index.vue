@@ -2,7 +2,7 @@
   <div class="detail-information">
   	
   		<div class="head-img row-lr">
-  			<img class="my-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
+  			<img class="my-img" src="../../assets/img/head3.jpg" alt="" />
   			<div class="info">
   				<p class="name">烟火迷离</p>
   				<p class="signature">微信号：迷离</p>
@@ -25,9 +25,9 @@
   			 		<li class="row-l">
   			 			<div class="title">个人相册</div>
   			 			<div class="value imgs row-c">
-  			 				<img :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
-  			 				<img :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
-  			 				<img :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
+  			 				<img src="../../assets/img/head1.jpg" alt="" />
+  			 				<img src="../../assets/img/head2.jpg" alt="" />
+  			 				<img src="../../assets/img/head3.jpg" alt="" />
   			 			</div>
   			 		</li>
   			 		<li v-if="isFriend==true"><div class="title">更多</div></li>

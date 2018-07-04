@@ -5,7 +5,7 @@
 	    <mu-list-item @click="goSingleChat" avatar button :ripple="true" v-for="(item,index) in 15" :key="index">
 	      <mu-list-item-action>
 	        <mu-avatar>
-	          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+	          <img src="../../assets/img/head1.jpg">
 	        </mu-avatar>
 	      </mu-list-item-action>
 	      <mu-list-item-content>

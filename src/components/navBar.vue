@@ -1,10 +1,10 @@
 <template>
   <div class="nav-bar">
   	<mu-appbar style="width: 100%;" color="primary">
-		  <mu-button icon slot="left">
-		    <mu-icon value="menu"></mu-icon>
+		  <mu-button icon slot="left" @click="goBack">
+		    <mu-icon value="arrow_back"></mu-icon>
 		  </mu-button>
-		  Title
+		  {{$route.meta.title}}
 		  <mu-menu slot="right" :open.sync="open">
 		    <mu-button flat>MENU</mu-button>
 		    <mu-list slot="content">
@@ -34,6 +34,9 @@ export default {
 		menuClick(val){
 			console.log(val)
 			this.open=false;
+		},
+		goBack(){
+			this.$router.go(-1);
 		}
 	}
 }
@@ -48,7 +51,12 @@ export default {
 	left: 0;
 	z-index: 999;
 }
-
+.mu-appbar-title{
+	font-size: 17px;
+}
+.mu-button-wrapper{
+	font-size: 14px;
+}
 </style>
 <style type="text/css">
 </style>

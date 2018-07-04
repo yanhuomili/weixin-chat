@@ -6,14 +6,14 @@
   			</div>
   		<div class="chat-list-item" v-for="(item,index) in chatArr">
   			<div class="my-text text" v-if="index%2==0">
-	  			<img class="person-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
+	  			<img class="person-img" src="../../assets/img/head3.jpg" alt="" />
 	  			<p>
 	  				<span>{{item}}</span>
 	  				<i></i>
 	  			</p>
 	  		</div>
 	  		<div class="other-text text" v-else>
-	  			<img class="person-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
+	  			<img class="person-img" src="../../assets/img/head2.jpg" alt="" />
 	  			<p>
 	  				<span>{{item}}</span>
 	  				<i></i>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-
+import store from '@/store'
 export default {
   name: 'single-chat',
   data () {
@@ -48,6 +48,12 @@ export default {
   },
   mounted(){
   	this.scrollHandle();
+  	let that=this;
+  	window.onresize = function(){
+  		that.$store.commit('getRouterViewH');
+  		that.scrollHandle();
+		}	
+		this.$route.meta.title='默默';
   },
 	methods: {
 		//获取1-6的随机数
@@ -59,7 +65,7 @@ export default {
   		this.inputText="";
   		var box=document.getElementsByClassName('chat-list')[0];
   		var ipt=document.getElementsByTagName('input')[0];
-  		ipt.focus()
+  		ipt.focus();//发送消息后设置为获取焦点
   		this.scrollHandle();
   	},
   	scrollHandle(){
@@ -68,13 +74,11 @@ export default {
   		let scrollT=box.scrollTop;//盒子卷起的高度
   		let boxH=box.offsetHeight;//内容总共的高度
 			this.$nextTick(()=>{
-				box.scrollTop=boxH;
+				box.scrollTop=scrollH;
 			})
   	},
   	getFoucs(){
-    	setTimeout(()=>{
     		this.scrollHandle();
-    	},50)
   	}
 	},
 }

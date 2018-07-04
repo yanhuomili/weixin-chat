@@ -14,6 +14,7 @@ const store = new Vuex.Store({
 		},
 		hasTabBar:true,
 		footBarHeight:51,
+		appH:'100%',
 		activeTab:'/home',
 		direction:''
 	},
@@ -24,6 +25,12 @@ const store = new Vuex.Store({
 		UPDATE_DIRECTION(state,obj){
 			state.direction=obj.direction;
 		},
+		getRouterViewH(state){
+			let clientH=document.documentElement.clientHeight;
+			let routerViewH=clientH-56-state.footBarHeight;
+			state.appH=routerViewH;//设置router-view的高度
+			return routerViewH;
+		}
 	},
 	actions:{//异步方法
 		

@@ -1,18 +1,17 @@
 <template>
   <div class="my">
-  	
-  		<div class="head-img">
-  			<img class="my-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
+  		<div class="head-img row-c">
+  			<img class="my-img" src="../../assets/img/head5.jpg" alt="" />
   			<div class="info">
   				<p class="name">验货迷离</p>
-  				<p class="signature">验货迷离的个性签名验货迷离的个性签名验货迷离的个性签名</p>
+  				<p class="signature">微信号：烟火</p>
   			</div>
   			<img class="icon" src="../../assets/img/erweima.png"/>
   		</div>
   		
   		<div class="top">
   			<mu-list>
-			    <mu-list-item avatar button :ripple="true">
+			    <!--<mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
 			          <img class="left-img" src="../../assets/img/friend-circle.png">
@@ -21,18 +20,18 @@
 			      <mu-list-item-title>朋友圈</mu-list-item-title>
 			      <mu-list-item-action>
 			        <mu-avatar>
-			          <img :src="'../../static/img/head'+getRanderNum()+'.jpg'">
+			          <img src="../../assets/img/head4.jpg">
 			        </mu-avatar>
 			        <div v-if="unReadNew" class="tip-point"></div>
 			      </mu-list-item-action>
-			    </mu-list-item>
+			    </mu-list-item>-->
 			   	<mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
 			          <img class="left-img" src="../../assets/img/sao.png">
 			        </mu-avatar>
 			      </mu-list-item-action>
-			      <mu-list-item-title>扫一扫</mu-list-item-title>
+			      <mu-list-item-title>钱包</mu-list-item-title>
 			    </mu-list-item>
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
@@ -40,7 +39,7 @@
 			          <img class="left-img" src="../../assets/img/shark.png">
 			        </mu-avatar>
 			      </mu-list-item-action>
-			      <mu-list-item-title>摇一摇</mu-list-item-title>
+			      <mu-list-item-title>收藏</mu-list-item-title>
 			    </mu-list-item>
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
@@ -48,7 +47,7 @@
 			          <img class="left-img" src="../../assets/img/look.png">
 			        </mu-avatar>
 			      </mu-list-item-action>
-			      <mu-list-item-title>看一看</mu-list-item-title>
+			      <mu-list-item-title>相册</mu-list-item-title>
 			    </mu-list-item>
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
@@ -56,7 +55,7 @@
 			          <img class="left-img" src="../../assets/img/shop.png">
 			        </mu-avatar>
 			      </mu-list-item-action>
-			      <mu-list-item-title>搜一搜</mu-list-item-title>
+			      <mu-list-item-title>卡包</mu-list-item-title>
 			    </mu-list-item>
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
@@ -64,7 +63,7 @@
 			          <img class="left-img" src="../../assets/img/fujin.png">
 			        </mu-avatar>
 			      </mu-list-item-action>
-			      <mu-list-item-title>附近的人</mu-list-item-title>
+			      <mu-list-item-title>表情</mu-list-item-title>
 			    </mu-list-item>
 			    <mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
@@ -72,9 +71,9 @@
 			          <img class="left-img" src="../../assets/img/piaopiu.png">
 			        </mu-avatar>
 			      </mu-list-item-action>
-			      <mu-list-item-title>漂流瓶</mu-list-item-title>
+			      <mu-list-item-title>设置</mu-list-item-title>
 			    </mu-list-item>
-			    <mu-list-item avatar button :ripple="true">
+			    <!--<mu-list-item avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
 			          <img class="left-img" src="../../assets/img/shop.png">
@@ -97,7 +96,7 @@
 			        </mu-avatar>
 			      </mu-list-item-action>
 			      <mu-list-item-title>小程序</mu-list-item-title>
-			    </mu-list-item>
+			    </mu-list-item>-->
 			    
 			    
 			    
@@ -133,16 +132,16 @@ export default {
 		overflow: hidden;
 		padding:5px 16px;
 		.my-img{
-			float: left;
+			/*float: left;*/
 			width: 60px;
 			height: 60px;
 			margin-right: 10px;
 		}
 		.info{
 			width: 65%;
-			margin-top: 6px;
+			/*margin-top: 6px;*/
 			padding-right:10px;
-			float: left;
+			/*float: left;*/
 			p{
 				display: -webkit-box;
 			 -webkit-box-orient: vertical;
@@ -155,8 +154,8 @@ export default {
 			}
 		}
 		.icon{
-			float: right;
-			margin-top: 17px;
+			/*float: right;*/
+			/*margin-top: 17px;*/
 			width: 26px;
 			height: 26px;
 		}
