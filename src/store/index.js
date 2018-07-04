@@ -13,6 +13,7 @@ const store = new Vuex.Store({
 			age:27
 		},
 		hasTabBar:true,
+		footBarHeight:51,
 		activeTab:'/home',
 		direction:''
 	},

@@ -45,6 +45,7 @@ export default {
   	
   },
   mounted(){
+  	console.log(mui)
   },
 	methods: {
 		//获取1-6的随机数

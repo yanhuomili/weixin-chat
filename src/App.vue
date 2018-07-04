@@ -1,9 +1,11 @@
 <template>
   <div id="app" :class="{'app-wrap-active':show==true}">
-  	<nav-bar></nav-bar>
-  	<transition :name="direction">
-  	  	<router-view/>
-    </transition>
+  	<nav-bar ref="navBarRef"></nav-bar>
+  	<div class="router-view" :style="{height: routerViewH+'px'}">
+  		<transition :name="direction">
+	  	  	<router-view/>
+	    </transition>
+  	</div>
     <foot-bar v-if="show" ref="footBarRef"></foot-bar>
   </div>
 </template>
@@ -20,15 +22,26 @@ export default {
   	navBar
   },
   mounted(){
-  	console.log(this.direction)
+  	console.log(this.routerViewH)
   },
   computed:{
+  	//是否显示底部tab
   	show(){
   		return store.state.hasTabBar;
+  	},
+  	//动态设置router-view的高度
+  	routerViewH(){
+  		let H=document.documentElement.clientHeight;
+  		return H-store.state.footBarHeight-56;
   	},
   	...mapState({
     	direction:'direction'
   	})
+  },
+  watch:{
+  	 $route(to,from){
+		    console.log('change');
+		  }
   }
 }
 </script>
@@ -42,9 +55,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 	padding-top: 56px;
+	overflow: hidden;
 }
 .router-view{
 	overflow-x:hidden ;
+	overflow-y: auto;
 }
 .app-wrap-active{
 	padding-bottom:50px ;
@@ -57,8 +72,8 @@ export default {
     will-change: transform;
     transition: all 250ms;
     height: 100%;
-    top: 0;
     position: absolute;
+    top: 0;
     backface-visibility: hidden;
     perspective: 1000;
   }

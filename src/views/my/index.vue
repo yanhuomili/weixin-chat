@@ -1,7 +1,7 @@
 <template>
   <div class="my">
   	
-  		<div class="head-img row-lr">
+  		<div class="head-img">
   			<img class="my-img" :src="'../../static/img/head'+getRanderNum()+'.jpg'" alt="" />
   			<div class="info">
   				<p class="name">验货迷离</p>
@@ -130,15 +130,19 @@ export default {
 	/*background: #fff;*/
 	padding: 5px 0;
 	.head-img{
+		overflow: hidden;
 		padding:5px 16px;
 		.my-img{
+			float: left;
 			width: 60px;
 			height: 60px;
 			margin-right: 10px;
 		}
 		.info{
-			flex: 1;
+			width: 65%;
+			margin-top: 6px;
 			padding-right:10px;
+			float: left;
 			p{
 				display: -webkit-box;
 			 -webkit-box-orient: vertical;
@@ -151,6 +155,8 @@ export default {
 			}
 		}
 		.icon{
+			float: right;
+			margin-top: 17px;
 			width: 26px;
 			height: 26px;
 		}
