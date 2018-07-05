@@ -61,7 +61,7 @@ export default {
 		}else{
 			mui.toast('服务已开启')
 		}
-		
+		this.initKeyDonwHandle();
 		
   },
 	methods: {
@@ -98,15 +98,12 @@ export default {
 　　　}, 
 		websocketonopen(){
 			console.log('链接服务')
-			mui.toast('服务已连接')
 		},
 		websocketonerror(err){
-			console.log(err);
 			console.log('服务发生错误')
 			mui.toast('服务已中断');
 		},
 		websocketonmessage(e){
-			console.log(e.data);
 			console.log('接收消息')
 			this.send();
 		},
@@ -120,11 +117,26 @@ export default {
 			}
 			this.websocket.send(this.inputText);
 		},
+		//监听键盘事件
+		initKeyDonwHandle(){
+			document.addEventListener('keydown',this.enterHandle)
+		},
+		//销毁键盘事件
+		destroyKeyDownHandle(){
+			document.removeEventListener('keydown',this.enterHandle);
+		},
+		enterHandle(e){
+			if(e.keyCode==13){
+				this.websocketsend();
+			}
+		},
 	},
 	beforeDestroy(){
 		if(this.websocket){
 			this.websocket.close();//退出的时候关闭链接
 		}
+		this.destroyKeyDownHandle();
+		
 	}
 	
 }
