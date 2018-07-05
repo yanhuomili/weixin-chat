@@ -10,7 +10,7 @@
 			      </mu-list-item-action>
 			      <mu-list-item-title>新的朋友</mu-list-item-title>
 			    </mu-list-item>
-			    <mu-list-item avatar button :ripple="true">
+			    <mu-list-item @click="goGroupChat" avatar button :ripple="true">
 			      <mu-list-item-action>
 			        <mu-avatar>
 			          <img src="../../assets/img/head2.jpg">
@@ -85,6 +85,10 @@ export default {
   	goDetailInformation(){
   		this.$router.push({path:'/DetailInformation'});
   	},
+  	//群聊
+  	goGroupChat(){
+  		this.$router.push({path:'/GroupChat'});
+  	}
 	}
 }
 </script>

@@ -4,14 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-
+import socket from '@/connectSocket'//引进websocket
 
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 //import '//fonts.useso.com/css?family=Roboto:300,400,500,700,400italic';
 //import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';
 Vue.use(MuseUI);
-
 
 const history = window.sessionStorage;
 history.clear()

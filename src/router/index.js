@@ -7,6 +7,7 @@ import Find from '@/views/find/index.vue'//发现
 import My from '@/views/my/index.vue'//我的
 import DetailInformation from '@/views/detailInformation/index.vue'//朋友详细资料
 import SingleChat from '@/views/singleChat/index.vue'//聊天页面
+import GroupChat from '@/views/groupChat/index.vue'//聊天页面
 import FriendsCircle from '@/views/friendsCircle/index.vue'//朋友圈页面
 import Test from '@/views/test/index.vue'
 
@@ -68,6 +69,14 @@ export default new Router({
       component: SingleChat,
       meta:{
       	title:'用户'
+      }
+    },
+    {
+      path: '/GroupChat',
+      name: 'group-chat',
+      component: GroupChat,
+      meta:{
+      	title:'群聊'
       }
     },
     {
