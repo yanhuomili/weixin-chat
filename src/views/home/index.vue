@@ -56,19 +56,22 @@ export default {
   },
   data () {
     return {
-    	list:[]
+    	list:[],
+    	websocket:null,
+    	talk:[]
     }
   },
   computed:{
   	
   },
   mounted(){
-  	console.log(mui)
   	test().then((res)=>{
   		console.log(res.data);
   	}).catch((err)=>{
   		console.log(err);
   	})
+  	
+  	
   },
 	methods: {
 		//获取1-6的随机数
@@ -82,7 +85,7 @@ export default {
 	  async getList(){
 	  	let data=(await test()).data;
 	  	this.list=data.data;
-	  }
+	  },
 	}
 }
 </script>

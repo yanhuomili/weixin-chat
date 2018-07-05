@@ -27,7 +27,7 @@
   		<img src="../../assets/img/find-default.png" alt="" />
   		<mu-text-field @focus="getFoucs" ref="inputRef" v-model="inputText"></mu-text-field>
   		<img src="../../assets/img/find-default.png" alt="" />
-			<p @click="send" v-if="inputText" class="send">发送</p>
+			<p @click="websocketsend" v-if="inputText" class="send">发送</p>
 			<img v-else src="../../assets/img/find-default.png" alt="" />
   	</div>
   		
@@ -42,7 +42,8 @@ export default {
   data () {
     return {
     	inputText:'',
-    	chatArr:[1,2,3,4,5,6,7,8,9]
+    	chatArr:[1,2,3,4,5,6,7,8,9],
+    	websocket:null
     	
     }
   },
@@ -54,6 +55,14 @@ export default {
   		that.scrollHandle();
 		}	
 		this.$route.meta.title='默默';
+		if(this.websocket==null){
+			mui.toast('开启服务')
+			this.initWebSocket();
+		}else{
+			mui.toast('服务已开启')
+		}
+		
+		
   },
 	methods: {
 		//获取1-6的随机数
@@ -79,8 +88,45 @@ export default {
   	},
   	getFoucs(){
     		this.scrollHandle();
-  	}
+  	},
+  	initWebSocket(){ //初始化weosocket 
+　　　　　　　　this.websocket = new WebSocket(process.env.WS_API); 
+　　　　　　　　this.websocket.onopen = this.websocketonopen;//链接socket
+　　　　　　　　this.websocket.onerror = this.websocketonerror;//监听错误事件
+　　　　　　　　this.websocket.onmessage = this.websocketonmessage; //监听接收消息
+　　　　　　　　this.websocket.onclose = this.websocketclose;//监听关闭事件
+　　　}, 
+		websocketonopen(){
+			console.log('链接服务')
+			mui.toast('服务已连接')
+		},
+		websocketonerror(err){
+			console.log(err);
+			console.log('服务发生错误')
+			mui.toast('服务已中断');
+		},
+		websocketonmessage(e){
+			console.log(e.data);
+			console.log('接收消息')
+			this.send();
+		},
+		websocketclose(e){
+			console.log('关闭链接')
+		},
+		websocketsend(){
+			if(!this.websocket){
+				mui.toast('服务已断开连接');
+				return;
+			}
+			this.websocket.send(this.inputText);
+		},
 	},
+	beforeDestroy(){
+		if(this.websocket){
+			this.websocket.close();//退出的时候关闭链接
+		}
+	}
+	
 }
 </script>
 
