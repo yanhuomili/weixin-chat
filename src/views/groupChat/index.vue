@@ -1,10 +1,10 @@
 <template>
   <div class="group-chat">
   	<div class="chat-list">
-  			<div class="time-tip">
-  				<span>6月29号 晚上18:00</span>
-  			</div>
-  		<div class="chat-list-item" v-for="(item,index) in chatArr">
+			<div class="time-tip">
+				<span>6月29号 晚上18:00</span>
+			</div>
+  		<div class="chat-list-item" v-for="(item,index) in groupChatList">
   			<div class="my-text text" v-if="index%2==0">
 	  			<img class="person-img" src="../../assets/img/head3.jpg" alt="" />
 	  			<p>
@@ -37,6 +37,7 @@
 
 <script>
 import store from '@/store'
+import {mapState} from 'vuex'
 export default {
   name: 'single-chat',
   data () {
@@ -46,6 +47,15 @@ export default {
     	
     }
   },
+  computed:{
+ 		groupChatList(){
+   		this.afterSend();
+ 			this.scrollHandle();
+ 			return store.state.chat.groupChatList;
+ 		}
+  },
+  watch:{
+  },
   mounted(){
   	this.scrollHandle();
   	let that=this;
@@ -54,7 +64,7 @@ export default {
   		that.scrollHandle();
 		}	
 		this.$route.meta.title='默默';
-		this.initKeyDonwHandle();
+		this.initKeyDonwHandle();//按回车键发送消息
 		
   },
 	methods: {
@@ -62,28 +72,31 @@ export default {
 		getRanderNum(){
   		return Math.ceil(Math.random()*6); 
   	},
-  	send(){
-  		this.chatArr.push(this.inputText);
+  	afterSend(){
   		this.inputText="";
   		var box=document.getElementsByClassName('chat-list')[0];
   		var ipt=document.getElementsByTagName('input')[0];
-  		ipt.focus();//发送消息后设置为获取焦点
-  		this.scrollHandle();
+  		if(box&&ipt){
+  			ipt.focus();//发送消息后设置为获取焦点
+  		}
+  		
   	},
   	scrollHandle(){
   		let box=document.getElementsByClassName('chat-list')[0];
-  		let scrollH=box.scrollHeight;//盒子高度
-  		let scrollT=box.scrollTop;//盒子卷起的高度
-  		let boxH=box.offsetHeight;//内容总共的高度
-			this.$nextTick(()=>{
-				box.scrollTop=scrollH;
-			})
+  		if(box){
+  			let scrollH=box.scrollHeight;//盒子高度
+	  		let scrollT=box.scrollTop;//盒子卷起的高度
+	  		let boxH=box.offsetHeight;//内容总共的高度
+				this.$nextTick(()=>{
+					box.scrollTop=scrollH;
+				})
+  		}
+  		
   	},
   	getFoucs(){
     		this.scrollHandle();
   	},
 		websocketsend(){
-			console.log(this.$socket,'$socket');
 			this.$socket.send(this.inputText);
 		},
 		//监听键盘事件

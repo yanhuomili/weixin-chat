@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import store from '../store'
 
 const websocket = new WebSocket(process.env.WS_API);
 websocket.onopen = websocketonopen;//链接socket
@@ -8,8 +9,7 @@ websocket.onclose = websocketclose;//监听关闭事件
 
 Vue.prototype.$socket=websocket;
 
-
-export function websocketonopen(){
+export function websocketonopen(e){
 		console.log('链接服务')
 	}
 export  function websocketonerror(err){
@@ -17,7 +17,9 @@ export  function websocketonerror(err){
 		mui.toast('服务已中断');
 	}
 export function websocketonmessage(e){
-		console.log('主程序接收到消息')
+		console.log('主程序接收到消息');
+		let text=e.data;
+		store.commit('groupChatReceive',text)
 	}
 export  function websocketclose(e){
 		console.log('关闭链接')

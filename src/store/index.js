@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import login from './modules/login'
 import users from './modules/users'
+import chat from './modules/chat'
 
 Vue.use(Vuex)
 
@@ -37,7 +38,8 @@ const store = new Vuex.Store({
 	},
 	modules: {
 	  	login,
-	  	users
+	  	users,
+	  	chat
 	}
 })
 

@@ -12,6 +12,7 @@ import 'muse-ui/dist/muse-ui.css';
 //import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';
 Vue.use(MuseUI);
 
+
 const history = window.sessionStorage;
 history.clear()
 let historyCount = history.getItem('count') * 1 || 0;

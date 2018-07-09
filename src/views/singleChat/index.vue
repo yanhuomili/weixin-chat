@@ -4,7 +4,7 @@
   			<div class="time-tip">
   				<span>6月29号 晚上18:00</span>
   			</div>
-  		<div class="chat-list-item" v-for="(item,index) in chatArr">
+  		<div class="chat-list-item" v-for="(item,index) in groupChatList">
   			<div class="my-text text" v-if="index%2==0">
 	  			<img class="person-img" src="../../assets/img/head3.jpg" alt="" />
 	  			<p>
@@ -55,67 +55,45 @@ export default {
   		that.scrollHandle();
 		}	
 		this.$route.meta.title='默默';
-		if(this.websocket==null){
-			mui.toast('开启服务')
-			this.initWebSocket();
-		}else{
-			mui.toast('服务已开启')
-		}
-		this.initKeyDonwHandle();
+		this.initKeyDonwHandle();//按回车键发送消息
 		
+  },
+  computed:{
+  	groupChatList(){
+   		this.afterSend();
+ 			this.scrollHandle();
+ 			return store.state.chat.groupChatList;
+ 		}
   },
 	methods: {
 		//获取1-6的随机数
 		getRanderNum(){
   		return Math.ceil(Math.random()*6); 
   	},
-  	send(){
-  		this.chatArr.push(this.inputText);
+  	afterSend(){
   		this.inputText="";
   		var box=document.getElementsByClassName('chat-list')[0];
   		var ipt=document.getElementsByTagName('input')[0];
-  		ipt.focus();//发送消息后设置为获取焦点
-  		this.scrollHandle();
+  		if(box&&ipt){
+  			ipt.focus();//发送消息后设置为获取焦点
+  		}
   	},
   	scrollHandle(){
   		let box=document.getElementsByClassName('chat-list')[0];
-  		let scrollH=box.scrollHeight;//盒子高度
-  		let scrollT=box.scrollTop;//盒子卷起的高度
-  		let boxH=box.offsetHeight;//内容总共的高度
-			this.$nextTick(()=>{
-				box.scrollTop=scrollH;
-			})
+  		if(box){
+  			let scrollH=box.scrollHeight;//盒子高度
+	  		let scrollT=box.scrollTop;//盒子卷起的高度
+	  		let boxH=box.offsetHeight;//内容总共的高度
+				this.$nextTick(()=>{
+					box.scrollTop=scrollH;
+				})
+  		}
   	},
   	getFoucs(){
     		this.scrollHandle();
   	},
-  	initWebSocket(){ //初始化weosocket 
-　　　　　　　　this.websocket = new WebSocket(process.env.WS_API); 
-　　　　　　　　this.websocket.onopen = this.websocketonopen;//链接socket
-　　　　　　　　this.websocket.onerror = this.websocketonerror;//监听错误事件
-　　　　　　　　this.websocket.onmessage = this.websocketonmessage; //监听接收消息
-　　　　　　　　this.websocket.onclose = this.websocketclose;//监听关闭事件
-　　　}, 
-		websocketonopen(){
-			console.log('链接服务')
-		},
-		websocketonerror(err){
-			console.log('服务发生错误')
-			mui.toast('服务已中断');
-		},
-		websocketonmessage(e){
-			console.log('接收消息')
-			this.send();
-		},
-		websocketclose(e){
-			console.log('关闭链接')
-		},
 		websocketsend(){
-			if(!this.websocket){
-				mui.toast('服务已断开连接');
-				return;
-			}
-			this.websocket.send(this.inputText);
+			this.$socket.send(this.inputText);
 		},
 		//监听键盘事件
 		initKeyDonwHandle(){
@@ -132,9 +110,6 @@ export default {
 		},
 	},
 	beforeDestroy(){
-		if(this.websocket){
-			this.websocket.close();//退出的时候关闭链接
-		}
 		this.destroyKeyDownHandle();
 		
 	}
