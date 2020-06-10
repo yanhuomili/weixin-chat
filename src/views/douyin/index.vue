@@ -318,8 +318,10 @@ export default {
           author_id: 1 //作者ID
         },
         {
+          // url:
+          //   "http://video.jishiyoo.com/549ed372c9d14b029bfb0512ba879055/8e2dc540573d496cb0942273c4a4c78c-15844fe70971f715c01d57c0c6595f45-ld.mp4",
           url:
-            "http://video.jishiyoo.com/549ed372c9d14b029bfb0512ba879055/8e2dc540573d496cb0942273c4a4c78c-15844fe70971f715c01d57c0c6595f45-ld.mp4",
+            "https://video-dev.myutopa.com/videostream/hlsoriginal/vod/5a9383c4e73d2acc8a21cf8b52351e79/5a9383c4e73d2acc8a21cf8b52351e79_,360x640,p.mp4.urlset/master.m3u8",
           cover: "http://oss.jishiyoo.com/images/file-1575343508574.jpg",
           tag_image:
             "http://npjy.oss-cn-beijing.aliyuncs.com/images/file-1575449277018pF3XL.jpg",
@@ -352,6 +354,24 @@ export default {
     comment_text(newV, oldV) {
       newV == "" ? (this.canSend = false) : (this.canSend = true);
     }
+  },
+  mounted() {
+    var myVideo = document.getElementsByClassName("video_box");
+    this.videoList.forEach((item, index) => {
+      if (item.url.indexOf(".m3u8") > -1) {
+        console.log(myVideo[index], "iiiiiiiiiii");
+        if (Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(
+            "https://video-dev.myutopa.com/videostream/hlsoriginal/vod/5a9383c4e73d2acc8a21cf8b52351e79/5a9383c4e73d2acc8a21cf8b52351e79_,360x640,p.mp4.urlset/master.m3u8"
+          );
+          hls.attachMedia(myVideo[index]);
+          hls.on(Hls.Events.MANIFEST_PASERD, function() {
+            // myVideo.play();
+          });
+        }
+      }
+    });
   },
   methods: {
     //获取评论
