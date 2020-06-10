@@ -709,6 +709,7 @@ video {
   bottom: auto;
   margin: auto;
   z-index: 999;
+  width: 60px;
   height: 60px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
