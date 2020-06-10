@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import store from '../store'
 
+console.log(process.env.WS_API,'process.env.WS_API')
+
 const websocket = new WebSocket(process.env.WS_API);
 websocket.onopen = websocketonopen;//链接socket
 websocket.onerror = websocketonerror;//监听错误事件
