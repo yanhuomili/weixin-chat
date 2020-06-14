@@ -282,7 +282,7 @@ Vue.use(Swipe, Toast).use(SwipeItem);
 let videoProcessInterval;
 export default {
   name: "home",
-  data() {
+  data () {
     let u = navigator.userAgent;
     return {
       current: 0,
@@ -298,8 +298,8 @@ export default {
           author_id: 1 //作者ID
         },
         {
-          url:
-            "http://video.jishiyoo.com/1eedc49bba7b4eaebe000e3721149807/d5ab221b92c74af8976bd3c1473bfbe2-4518fe288016ee98c8783733da0e2da4-ld.mp4",
+          // url:"http://video.jishiyoo.com/1eedc49bba7b4eaebe000e3721149807/d5ab221b92c74af8976bd3c1473bfbe2-4518fe288016ee98c8783733da0e2da4-ld.mp4",
+          url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
           cover: "http://oss.jishiyoo.com/images/file-1575343195934.jpg",
           tag_image:
             "http://npjy.oss-cn-beijing.aliyuncs.com/images/file-1575449298299M3V50.jpg",
@@ -351,11 +351,11 @@ export default {
   },
   watch: {
     //监听输入变化
-    comment_text(newV, oldV) {
+    comment_text (newV, oldV) {
       newV == "" ? (this.canSend = false) : (this.canSend = true);
     }
   },
-  mounted() {
+  mounted () {
     var myVideo = document.getElementsByClassName("video_box");
     this.videoList.forEach((item, index) => {
       if (item.url.indexOf(".m3u8") > -1) {
@@ -363,10 +363,10 @@ export default {
         if (Hls.isSupported()) {
           var hls = new Hls();
           hls.loadSource(
-            "https://video-dev.myutopa.com/videostream/hlsoriginal/vod/5a9383c4e73d2acc8a21cf8b52351e79/5a9383c4e73d2acc8a21cf8b52351e79_,360x640,p.mp4.urlset/master.m3u8"
+            item.url
           );
           hls.attachMedia(myVideo[index]);
-          hls.on(Hls.Events.MANIFEST_PASERD, function() {
+          hls.on(Hls.Events.MANIFEST_PASERD, function () {
             // myVideo.play();
           });
         }
@@ -375,7 +375,7 @@ export default {
   },
   methods: {
     //获取评论
-    getComment() {
+    getComment () {
       //setTimeout模拟Ajax请求
       setTimeout(() => {
         let data = [
@@ -438,7 +438,7 @@ export default {
       }, 500);
     },
     //获取单个评论
-    getCommentDetail(to_comment_id) {
+    getCommentDetail (to_comment_id) {
       let obj = {
         action: "show_comment_info",
         comment_id: to_comment_id
@@ -467,7 +467,7 @@ export default {
       }, 500);
     },
     //检测评论内容
-    checkComment() {
+    checkComment () {
       if (this.comment_text == "") {
         Toast("评论内容不能为空");
       } else {
@@ -484,7 +484,7 @@ export default {
       }
     },
     //发送评论
-    sendComment(comment_id, p_id, p_user_id, content) {
+    sendComment (comment_id, p_id, p_user_id, content) {
       this.comment_text = "";
       this.isSending = true;
       setTimeout(() => {
@@ -519,7 +519,7 @@ export default {
       }, 500);
     },
     //评论点赞
-    commentLove(item, index, index2) {
+    commentLove (item, index, index2) {
       let comment_id = item.comment_id,
         user_id = item.user_id,
         love_comment = item.love_comment,
@@ -555,7 +555,7 @@ export default {
       }, 500);
     },
     //点击回复
-    replayUser(item, index, index2) {
+    replayUser (item, index, index2) {
       item.index = index;
       item.index2 = index2;
       this.replayUserData = item;
@@ -563,41 +563,41 @@ export default {
       this.$refs.content.focus();
     },
     //弹出评论窗口
-    changeComment() {
+    changeComment () {
       this.commentPop = true;
       this.videoComment = [];
       this.getComment();
     },
     //关闭评论弹窗
-    closeComment() {
+    closeComment () {
       this.commentPop = false;
       this.commentPlaceholder = "留下你精彩的评论吧";
       this.replayUserData = "";
     },
     //关注该作者
-    checkSubscribe(item, index) {
+    checkSubscribe (item, index) {
       this.videoList.map(v => {
         v.author_id == item.author_id ? (v.tagFollow = true) : "";
       });
     },
     //改变菜单
-    changeTab(index) {
+    changeTab (index) {
       this.tabIndex = index;
     },
     //改变收藏状态
-    changeFabulous(item, index) {
+    changeFabulous (item, index) {
       this.videoList[index].fabulous = !this.videoList[index].fabulous;
     },
     //展示分享弹窗
-    changeShare() {
+    changeShare () {
       this.showShareBox = true;
     },
     //取消分享
-    cancelShare() {
+    cancelShare () {
       this.showShareBox = false;
     },
     //滑动改变播放的视频
-    onChange(index) {
+    onChange (index) {
       //改变的时候 暂停当前播放的视频
       clearInterval(videoProcessInterval);
       this.videoProcess = 0;
@@ -611,14 +611,14 @@ export default {
       this.pauseVideo();
     },
     // 开始播放
-    playvideo(event) {
+    playvideo (event) {
       let video = document.querySelectorAll("video")[this.current];
       console.log("playvideo：" + this.current);
       this.isVideoShow = false;
       this.iconPlayShow = false;
       this.showShareBox = false;
       video.play();
-      window.onresize = function() {
+      window.onresize = function () {
         video.style.width = window.innerWidth + "px";
         video.style.height = window.innerHeight + "px";
       };
@@ -627,7 +627,7 @@ export default {
         this.changeProcess(video);
       }, 100);
     },
-    pauseVideo() {
+    pauseVideo () {
       //暂停\播放
       let video = document.querySelectorAll("video")[this.current];
       console.log("pauseVideo" + this.current);
@@ -646,19 +646,19 @@ export default {
       this.showShareBox = false;
     },
     //记录播放进度
-    changeProcess() {
+    changeProcess () {
       let video = document.querySelectorAll("video")[this.current];
       let currentTime = video.currentTime.toFixed(1);
       let duration = video.duration.toFixed(1);
       this.videoProcess = parseInt((currentTime / duration).toFixed(2) * 100);
     },
-    onPlayerEnded(player) {
+    onPlayerEnded (player) {
       //视频结束
       this.isVideoShow = true;
       this.current += this.current;
     },
     //复制当前链接
-    copyUrl() {
+    copyUrl () {
       let httpUrl = window.location.href;
       var oInput = document.createElement("input");
       oInput.value = httpUrl;
